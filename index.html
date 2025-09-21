@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flores Animadas</title>
+    <style>
+        :root {
+            --flower-color: #FFD700; /* Color principal de los pétalos */
+            --center-color: #654321; /* Color del centro de la flor */
+            --stem-color: #2E8B57;   /* Color del tallo */
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* --- Espacio para el Mensaje Especial --- */
+        .special-message {
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(40, 40, 60, 0.7);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            z-index: 100;
+            max-width: 80%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .special-message h1 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+            color: #FFD700;
+        }
+
+        .special-message p {
+            margin: 0;
+            font-size: 1em;
+        }
+
+        /* --- Contenedor de las Flores --- */
+        .flower-field {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            pointer-events: none; /* Permite hacer clic "a través" de este contenedor */
+        }
+
+        /* --- Estilo de una Flor --- */
+        .flower {
+            position: absolute;
+            bottom: -50px; /* Inicia oculta abajo */
+            --size: calc(80px + 20 * (var(--i) / 10)); /* Tamaño variable */
+            width: var(--size);
+            height: var(--size);
+            transform-origin: bottom center;
+            animation: grow 5s forwards, sway 8s infinite;
+            animation-delay: var(--delay);
+        }
+
+        .flower .stem {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: calc(var(--size) * 0.08);
+            height: calc(var(--size) * 1.5);
+            background: var(--stem-color);
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        .flower .head {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 100%;
+        }
+
+        .flower .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 35%;
+            height: 35%;
+            background: var(--center-color);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .flower .petal {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .flower .petal span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40%;
+            height: 50%;
+            background: var(--flower-color);
+            transform-origin: center bottom;
+            clip-path: ellipse(50% 50% at 50% 100%);
+            z-index: 1;
+        }
+
+        /* Posicionamiento de los pétalos */
+        .petal span:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
+        .petal span:nth-child(2) { transform: translate(-50%, -100%) rotate(30deg); }
+        .petal span:nth-child(3) { transform: translate(-50%, -100%) rotate(60deg); }
+        .petal span:nth-child(4) { transform: translate(-50%, -100%) rotate(90deg); }
+        .petal span:nth-child(5) { transform: translate(-50%, -100%) rotate(120deg); }
+        .petal span:nth-child(6) { transform: translate(-50%, -100%) rotate(150deg); }
+        .petal span:nth-child(7) { transform: translate(-50%, -100%) rotate(180deg); }
+        .petal span:nth-child(8) { transform: translate(-50%, -100%) rotate(210deg); }
+        .petal span:nth-child(9) { transform: translate(-50%, -100%) rotate(240deg); }
+        .petal span:nth-child(10) { transform: translate(-50%, -100%) rotate(270deg); }
+        .petal span:nth-child(11) { transform: translate(-50%, -100%) rotate(300deg); }
+        .petal span:nth-child(12) { transform: translate(-50%, -100%) rotate(330deg); }
+
+
+        /* --- Animaciones --- */
+        @keyframes grow {
+            to {
+                transform: translateY(-50px);
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% {
+                transform: translateY(-50px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(-50px) rotate(-2deg);
+            }
+        }
+
+        /* --- Estrellas fugaces --- */
+        @keyframes shooting-star {
+            0% {
+                transform: translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-200px, 200px);
+                opacity: 0;
+            }
+        }
+
+        .shooting-star {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(-45deg, #fff, rgba(255, 255, 255, 0));
+            border-radius: 999px;
+            filter: drop-shadow(0 0 6px #fff);
+            animation: shooting-star 3s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="special-message">
+        <h1>Para Alguien Especial</h1>
+        <p>Que tu día esté lleno de luz y alegría, como estas flores bajo las estrellas.</p>
+        </div>
+    
+    <div class="flower-field" id="flower-field">
+        </div>
+
+    <script>
+        const flowerField = document.getElementById('flower-field');
+        const numberOfFlowers = 10; // Puedes cambiar el número de flores
+
+        // Función para crear una sola flor
+        function createFlower(index) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            // --i es una variable CSS que usamos para variar el tamaño
+            // --delay es para que cada flor crezca en un momento diferente
+            flower.style.setProperty('--i', index);
+            flower.style.setProperty('--delay', `${Math.random() * 5}s`);
+            flower.style.left = `${10 + Math.random() * 80}%`; // Posición horizontal aleatoria
+
+            const stem = document.createElement('div');
+            stem.className = 'stem';
+
+            const head = document.createElement('div');
+            head.className = 'head';
+
+            const center = document.createElement('div');
+            center.className = 'center';
+
+            const petalContainer = document.createElement('div');
+            petalContainer.className = 'petal';
+
+            for (let i = 0; i < 12; i++) {
+                const petalSpan = document.createElement('span');
+                petalContainer.appendChild(petalSpan);
+            }
+
+            head.appendChild(center);
+            head.appendChild(petalContainer);
+            flower.appendChild(stem);
+            flower.appendChild(head);
+            
+            flowerField.appendChild(flower);
+        }
+
+        // Crear varias flores
+        for (let i = 0; i < numberOfFlowers; i++) {
+            createFlower(i);
+        }
+
+        // --- Crear Estrellas Fugaces ---
+        const numberOfShootingStars = 5;
+        for (let i = 0; i < numberOfShootingStars; i++) {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.top = `${Math.random() * 50}%`;
+            star.style.right = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 10}s`;
+            star.style.animationDuration = `${2 + Math.random() * 3}s`; // Duración variable
+            document.body.appendChild(star);
+        }
+    </script>
+</body>
+</html>
