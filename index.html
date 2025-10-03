@@ -1,247 +1,236 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flores Animadas</title>
-    <style>
-        :root {
-            --flower-color: #FFD700; /* Color principal de los pétalos */
-            --center-color: #654321; /* Color del centro de la flor */
-            --stem-color: #2E8B57;   /* Color del tallo */
-        }
-
-        body {
-            margin: 0;
-            overflow: hidden;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* --- Espacio para el Mensaje Especial --- */
-        .special-message {
-            position: absolute;
-            top: 5%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(40, 40, 60, 0.7);
-            color: white;
-            padding: 20px 30px;
-            border-radius: 15px;
-            text-align: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            z-index: 100;
-            max-width: 80%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .special-message h1 {
-            margin: 0 0 10px 0;
-            font-size: 1.5em;
-            color: #FFD700;
-        }
-
-        .special-message p {
-            margin: 0;
-            font-size: 1em;
-        }
-
-        /* --- Contenedor de las Flores --- */
-        .flower-field {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%;
-            pointer-events: none; /* Permite hacer clic "a través" de este contenedor */
-        }
-
-        /* --- Estilo de una Flor --- */
-        .flower {
-            position: absolute;
-            bottom: -50px; /* Inicia oculta abajo */
-            --size: calc(80px + 20 * (var(--i) / 10)); /* Tamaño variable */
-            width: var(--size);
-            height: var(--size);
-            transform-origin: bottom center;
-            animation: grow 5s forwards, sway 8s infinite;
-            animation-delay: var(--delay);
-        }
-
-        .flower .stem {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: calc(var(--size) * 0.08);
-            height: calc(var(--size) * 1.5);
-            background: var(--stem-color);
-            transform: translateX(-50%);
-            border-radius: 10px;
-        }
-
-        .flower .head {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            height: 100%;
-        }
-
-        .flower .center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 35%;
-            height: 35%;
-            background: var(--center-color);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2;
-        }
-
-        .flower .petal {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .flower .petal span {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 40%;
-            height: 50%;
-            background: var(--flower-color);
-            transform-origin: center bottom;
-            clip-path: ellipse(50% 50% at 50% 100%);
-            z-index: 1;
-        }
-
-        /* Posicionamiento de los pétalos */
-        .petal span:nth-child(1) { transform: translate(-50%, -100%) rotate(0deg); }
-        .petal span:nth-child(2) { transform: translate(-50%, -100%) rotate(30deg); }
-        .petal span:nth-child(3) { transform: translate(-50%, -100%) rotate(60deg); }
-        .petal span:nth-child(4) { transform: translate(-50%, -100%) rotate(90deg); }
-        .petal span:nth-child(5) { transform: translate(-50%, -100%) rotate(120deg); }
-        .petal span:nth-child(6) { transform: translate(-50%, -100%) rotate(150deg); }
-        .petal span:nth-child(7) { transform: translate(-50%, -100%) rotate(180deg); }
-        .petal span:nth-child(8) { transform: translate(-50%, -100%) rotate(210deg); }
-        .petal span:nth-child(9) { transform: translate(-50%, -100%) rotate(240deg); }
-        .petal span:nth-child(10) { transform: translate(-50%, -100%) rotate(270deg); }
-        .petal span:nth-child(11) { transform: translate(-50%, -100%) rotate(300deg); }
-        .petal span:nth-child(12) { transform: translate(-50%, -100%) rotate(330deg); }
-
-
-        /* --- Animaciones --- */
-        @keyframes grow {
-            to {
-                transform: translateY(-50px);
-            }
-        }
-
-        @keyframes sway {
-            0%, 100% {
-                transform: translateY(-50px) rotate(2deg);
-            }
-            50% {
-                transform: translateY(-50px) rotate(-2deg);
-            }
-        }
-
-        /* --- Estrellas fugaces --- */
-        @keyframes shooting-star {
-            0% {
-                transform: translate(0, 0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-200px, 200px);
-                opacity: 0;
-            }
-        }
-
-        .shooting-star {
-            position: absolute;
-            height: 2px;
-            background: linear-gradient(-45deg, #fff, rgba(255, 255, 255, 0));
-            border-radius: 999px;
-            filter: drop-shadow(0 0 6px #fff);
-            animation: shooting-star 3s linear infinite;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta Secreta 2 by myeya</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: rgb(194, 197, 197); 
+      overflow-x: hidden;
+    }
+    .hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .heart {
+      position: absolute;
+      animation: fall linear forwards;
+      color: rgba(255,0,0,0.6);
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+    }
+    .screen {
+      display: none;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+    }
+    .active {
+      display: flex;
+    }
+    .password-screen {
+      flex-direction: column;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 10px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+    .key {
+      background-color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 20px;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 4px 4px 8px rgba(0,0,0,0.15);
+    }
+    .key:hover {
+      background-color: #e6f0f5;
+      transform: translateY(-3px);
+    }
+    .input-display {
+      font-size: 24px;
+      margin-top: 20px;
+      letter-spacing: 8px;
+    }
+    .notepad {
+      background-color: #f9f9f9;
+      border: 3px solid #000000;
+      padding: 20px;
+      border-radius: 20px;
+      width: 90%;
+      max-width: 500px;
+      text-align: left;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      line-height: 1.6;
+      box-shadow: 8px 8px 15px rgba(0,0,0,0.2);
+    }
+    .notepad h3 {
+      margin-top: 0;
+    }
+    .password-img {
+      width: 260px; 
+      height: 150px;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 6px 6px 15px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    .note-img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      box-shadow: 4px 4px 12px rgba(0,0,0,0.2);
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 15px;
+      background-color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 4px 4px 8px rgba(0,0,0,0.15);
+      transition: all 0.2s ease;
+    }
+    .back-btn:hover {
+      background-color: #ded8d8;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
+<div class="hearts"></div>
 
-    <div class="special-message">
-        <h1>Para Alguien Especial</h1>
-        <p>Que tu día esté lleno de luz y alegría, como estas flores bajo las estrellas.</p>
-        </div>
-    
-    <div class="flower-field" id="flower-field">
-        </div>
+<div id="passwordScreen" class="screen password-screen active">
+<img src="shinobuel.jpg" 
+     alt="Imagen decorativa" 
+     class="password-img" 
+     style="width: 300px; height: auto;">
+  <h2>🔒 Ingresa la contraseña</h2>
+  <div class="input-display" id="inputDisplay">••••</div>
+  <div class="keypad">
+    <button class="key" onclick="enterDigit('1')">1</button>
+    <button class="key" onclick="enterDigit('2')">2</button>
+    <button class="key" onclick="enterDigit('3')">3</button>
+    <button class="key" onclick="enterDigit('4')">4</button>
+    <button class="key" onclick="enterDigit('5')">5</button>
+    <button class="key" onclick="enterDigit('6')">6</button>
+    <button class="key" onclick="enterDigit('7')">7</button>
+    <button class="key" onclick="enterDigit('8')">8</button>
+    <button class="key" onclick="enterDigit('9')">9</button>
+    <button class="key" onclick="checkPassword()">✔</button>
+    <button class="key" onclick="enterDigit('0')">0</button>
+    <button class="key" onclick="deleteLast()">⌫</button>
 
-    <script>
-        const flowerField = document.getElementById('flower-field');
-        const numberOfFlowers = 10; // Puedes cambiar el número de flores
+  </div>
+</div>
 
-        // Función para crear una sola flor
-        function createFlower(index) {
-            const flower = document.createElement('div');
-            flower.className = 'flower';
-            // --i es una variable CSS que usamos para variar el tamaño
-            // --delay es para que cada flor crezca en un momento diferente
-            flower.style.setProperty('--i', index);
-            flower.style.setProperty('--delay', `${Math.random() * 5}s`);
-            flower.style.left = `${10 + Math.random() * 80}%`; // Posición horizontal aleatoria
+<div id="notepadScreen" class="screen">
+  <div class="notepad" style="text-align: center;">
+    <img src="shinobu.jpg" 
+         alt="Imagen decorativa" 
+         class="password-img"
+         style="max-width: 100%; height: auto;">
 
-            const stem = document.createElement('div');
-            stem.className = 'stem';
+<h3 style="text-align: left; margin-bottom: 0;">📅 03 Octubre 2025</h3>
+<h4 style="text-align: left; margin-top: 0;">💌 Edgaaaaaaaaaaaaaaaaaaar</h4>
 
-            const head = document.createElement('div');
-            head.className = 'head';
+<p style="text-align: justify;">
+  Hermanazooooooo Espero logres pasar un excelente dia hoy y que disfrutes a pesar de cualquier circunstacia
+  <br>Eres una gran persona y hermano bro Dios te bendiga y te cuide para que logres cumplir cada meta
+  que te propongas <br>
+  Sabes que cualquier cosa Estamos pa la que necesites mi Rey. Y aunque no pude comprarte algo material
+  espero al menos sacarte una sonrisa con este detalle que hice y que espero te guste las fotitos xd
+  <br>
+  Te quiero mucho bro y que tengas un feliz cumpleaños 🎉🎂🎁🎈🎊
+</p>
 
-            const center = document.createElement('div');
-            center.className = 'center';
+    <button class="back-btn" onclick="goBack()">🔙 Inicio</button>
+  </div>
+</div>
 
-            const petalContainer = document.createElement('div');
-            petalContainer.className = 'petal';
+<script>
 
-            for (let i = 0; i < 12; i++) {
-                const petalSpan = document.createElement('span');
-                petalContainer.appendChild(petalSpan);
-            }
+  function crearCorazones() {
+    const heartsContainer = document.querySelector('.hearts');
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '⚽';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+      heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 8000);
+    }, 500);
+  }
+  crearCorazones();
 
-            head.appendChild(center);
-            head.appendChild(petalContainer);
-            flower.appendChild(stem);
-            flower.appendChild(head);
-            
-            flowerField.appendChild(flower);
-        }
+  const correctPassword = '0110';
+  let input = '';
 
-        // Crear varias flores
-        for (let i = 0; i < numberOfFlowers; i++) {
-            createFlower(i);
-        }
+  function enterDigit(digit) {
+    if (input.length < 4) {
+      input += digit;
+      updateDisplay();
+    }
+  }
 
-        // --- Crear Estrellas Fugaces ---
-        const numberOfShootingStars = 5;
-        for (let i = 0; i < numberOfShootingStars; i++) {
-            const star = document.createElement('div');
-            star.className = 'shooting-star';
-            star.style.top = `${Math.random() * 50}%`;
-            star.style.right = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 10}s`;
-            star.style.animationDuration = `${2 + Math.random() * 3}s`; // Duración variable
-            document.body.appendChild(star);
-        }
-    </script>
+  function deleteLast() {
+    input = input.slice(0, -1);
+    updateDisplay();
+  }
+
+  function updateDisplay() {
+    document.getElementById('inputDisplay').textContent = input.padEnd(4, '•');
+  }
+
+  function checkPassword() {
+    if (input.length === 4) {
+      if (input === correctPassword) {
+        document.getElementById('passwordScreen').classList.remove('active');
+        document.getElementById('notepadScreen').classList.add('active');
+      } else {
+        alert('Contraseña incorrecta, intenta de nuevo');
+        input = '';
+        updateDisplay();
+      }
+    } else {
+      alert('Debes ingresar los 4 dígitos.');
+    }
+  }
+
+  function goBack() {
+    document.getElementById('notepadScreen').classList.remove('active');
+    document.getElementById('passwordScreen').classList.add('active');
+    input = '';
+    updateDisplay();
+  }
+</script>
 </body>
 </html>
